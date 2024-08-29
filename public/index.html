@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>bomb-idle</title>
+  <link rel="stylesheet" href="styles.1076489477.css">
+  <link rel="stylesheet" href="https://fonts.cdnfonts.com/css/museo-sans-rounded">
+  <script src="https://tganalytics.xyz/index.js" type="text/javascript"></script>
+</head>
+
+<body>
+<div id="unity-container">
+  <canvas id="unity-canvas"></canvas>
+</div>
+<div id="unity-loading-container" ontouchstart="touchStart(event)" ontouchend="touchEnd(event)"
+     onmousedown="touchStart(event)" onmouseup="touchEnd(event)">
+  <div id="unity-loading-bg">
+    <div id="unity-loading-fg"></div>
+  </div>
+  <div id="unity-loading-text">Downloading game data</div>
+  <div id="unity-loading-version">v1.0</div>
+</div>
+<script src="debug.js?638604360867444655"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-7YXRJ2WSVP"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag() { dataLayer.push(arguments); }
+  gtag('js', new Date());
+
+  gtag('config', 'G-7YXRJ2WSVP');
+</script>
+
+</script>
+<script src="https://client.mergepals.io/telegram-web-app.js"></script>
+<script>
+  // Initialize Telegram Analytics SDK
+  //window.telegramAnalytics.init({
+    //token: 'eyJhcHBfbmFtZSI6Im1lcmdlcGFscyIsImFwcF91cmwiOiJodHRwczovL3QubWUvbWVyZ2VwYWxzYm90IiwiYXBwX2RvbWFpbiI6Imh0dHBzOi8vY2xpZW50Lm1lcmdlcGFscy5pby8ifQ==!vDMuYjbS+liH33iBK6J+K+oc0LFCoT/nhhVZDo8IZqk=',
+    //appName: 'mergepals',
+  //});
+
+  Telegram.WebApp.ready();
+  Telegram.WebApp.expand();
+  Telegram.WebApp.enableClosingConfirmation();
+  Telegram.WebApp.disableVerticalSwipes();
+
+  alert = function (message) { console.log(`ALERT ${message}`); };
+
+</script>
+<script src="https://unpkg.com/tonweb@0.0.41/dist/tonweb.js"></script>
+<script src="https://unpkg.com/@tonconnect/ui@latest/dist/tonconnect-ui.min.js"></script>
+<script src="https://unpkg.com/clipboard@2/dist/clipboard.min.js"></script>
+<script src="script.js?638604360867444655"></script>
+</body>
+
+</html>
