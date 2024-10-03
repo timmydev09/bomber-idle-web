@@ -1,9 +1,9 @@
 var buildUrl = "Build";
-var loaderUrl = buildUrl + "/development.loader.js?638635680645785490";
+var loaderUrl = buildUrl + "/development.loader.js?638635728102626870";
 var config = {
-    dataUrl: buildUrl + "/d55497d9c9c78a1f39d52a5ea2d41cff.data.unityweb",
-    frameworkUrl: buildUrl + "/726b6a1cd765dc74f3335d3c2bbef9a0.js.unityweb",
-    codeUrl: buildUrl + "/3bbb7decc5d38b50625641ba1600c5fa.wasm.unityweb",
+    dataUrl: buildUrl + "/546eb557d3e88196ce0f003d23ae020f.data.unityweb",
+    frameworkUrl: buildUrl + "/c03090bdd62fb2cdaa708184c91689fc.js.unityweb",
+    codeUrl: buildUrl + "/9ebfcbe6275a55b946e5563403fcbda0.wasm.unityweb",
     streamingAssetsUrl: "StreamingAssets",
     companyName: "DefaultCompany",
     productName: "bomb-idle",
@@ -66,7 +66,7 @@ function UnityTaskCallBack(taskId, success, data) {
 }
 
 const tonConnectUI = new TON_CONNECT_UI.TonConnectUI({
-    manifestUrl: 'https://cdn.mirailabs.co/waifu-tap/static/tele-config.json'
+    manifestUrl: 'https://cdn.mirailabs.co/bomber/static/tonConnectConfig.json'
 });
 
 tonConnectUI.onStatusChange(walletAndwalletInfo => {
