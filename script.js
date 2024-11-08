@@ -1,13 +1,13 @@
 var buildUrl = "Build";
-var loaderUrl = buildUrl + "/development.loader.js?638660858295557080";
+var loaderUrl = buildUrl + "/development.loader.js?638666672293609180";
 var config = {
-    dataUrl: buildUrl + "/58191688968ddb773926519417c3e6fd.data.unityweb",
-    frameworkUrl: buildUrl + "/41c07ccac05144730c4bf3011be9ee79.js.unityweb",
-    codeUrl: buildUrl + "/8572b3f6a51cde8da736c04a1d3e2bc8.wasm.unityweb",
+    dataUrl: buildUrl + "/24b3b321f9d02545d86a55d14dae1b91.data.unityweb",
+    frameworkUrl: buildUrl + "/e97ce4458c218e6d54f42ea4e60ab6a6.js.unityweb",
+    codeUrl: buildUrl + "/a63ff7f174e31451268925877ade28cd.wasm.unityweb",
     streamingAssetsUrl: "StreamingAssets",
     companyName: "DefaultCompany",
     productName: "bomb-idle",
-    productVersion: "0.1.4",
+    productVersion: "0.1.5",
 
     cacheControl: function (url) {
         // Caching enabled for .data and .bundle files.
