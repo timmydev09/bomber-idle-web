@@ -1,0 +1,150 @@
+@font-face {
+    font-family: Glory;
+    src: url('Glory-ExtraBold.ttf');
+}
+
+* {
+    padding: 0;
+    margin: 0;
+}
+
+html {
+    /* fix mobile viewport menu bar on iOS */
+    height: -webkit-fill-available;
+}
+
+body {
+    height: 100%;
+    /* fix mobile viewport menu bar on iOS */
+    height: -webkit-fill-available;
+    width: 100%;
+    text-align: center;
+}
+
+
+
+.logo-holder {
+    position: absolute;
+    width: 100%;
+    display: flex;
+    top: 0;
+    margin-top: 60px;
+    flex-direction: row;
+    justify-items: center;
+    justify-content: center;
+}
+
+.logo {
+    width: 65%;
+    object-fit: scale-down;
+}
+
+#unity-container {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Default values, might be overwritten by aspect ratio media queries */
+#unity-canvas {
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
+}
+
+#unity-loading-container {
+    display: flex;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image: url('splash.webp');
+    background-position: center;
+    background-size: cover;
+    justify-content: center;
+    align-items: center;
+}
+
+#unity-loading-container.finished {
+    opacity: 0;
+    visibility: collapse;
+}
+
+
+.loading-holder {
+    position: absolute;
+    bottom: 15px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 3px;
+}
+
+.loading-text-holder {
+    width: 80%;
+}
+
+#unity-loading-bg {
+    width: 80%;
+}
+
+#loading-progress-text {
+    text-align: center;
+    color: white;
+    font-size: 18px;
+    font-family: Glory;
+    font-weight: bold;
+    margin-top: 7px;
+}
+
+.loader-base {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+
+.loader-bg {
+    position: absolute;
+    height: calc(100% - 8px);
+    width: calc(100% - 8px);
+    padding: 4px;
+    display: flex;
+    flex-direction: row;
+
+}
+
+.progress-holder {
+    position: relative;
+    width: 100%;
+    height: 35px;
+    top: 0;
+    left: 0;
+}
+
+#unity-loading-fg {
+    height: 100%;
+    width: 0%;
+    transition: 400ms linear;
+}
+
+#unity-loading-text {
+    color: #f7f1e3;
+    font-size: 16px;
+    font-family: Glory;
+}
+
+#unity-loading-version {
+    color: #f7f1e3;
+    opacity: 0.32;
+    text-align: start;
+    font-size: 16px;
+    font-family: Glory;
+}

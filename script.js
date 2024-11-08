@@ -1,7 +1,7 @@
 var buildUrl = "Build";
-var loaderUrl = buildUrl + "/development.loader.js?638666906450218410";
+var loaderUrl = buildUrl + "/development.loader.js?638666917248442200";
 var config = {
-    dataUrl: buildUrl + "/3b26770ace906a842f628f4180a85275.data.unityweb",
+    dataUrl: buildUrl + "/de25b18dce02ecafbf21ce6919d8191c.data.unityweb",
     frameworkUrl: buildUrl + "/c9b24551867698effc0bc4727207e9f6.js.unityweb",
     codeUrl: buildUrl + "/16910f6af3ea39441c4ef61ed51b7c8c.wasm.unityweb",
     streamingAssetsUrl: "StreamingAssets",
@@ -40,13 +40,14 @@ else {
 
 var canvas = document.querySelector("#unity-canvas");
 var loadingBar = document.querySelector("#unity-loading-fg");
-
+var textProgress = document.querySelector("#loading-progress-text");
 var unityGame;
 var script = document.createElement("script");
 script.src = loaderUrl;
 script.onload = function () {
     createUnityInstance(canvas, config, function (progress) {
         loadingBar.style.width = 75 * progress + "%";
+        textProgress.innerHTML = `${progress}%`;
     }).then(function (unityInstance) {
         unityGame = unityInstance;
     }).catch(function (message) {
