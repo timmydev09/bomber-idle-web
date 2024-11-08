@@ -1,7 +1,7 @@
 var buildUrl = "Build";
-var loaderUrl = buildUrl + "/development.loader.js?638666917248442200";
+var loaderUrl = buildUrl + "/development.loader.js?638666920412110230";
 var config = {
-    dataUrl: buildUrl + "/de25b18dce02ecafbf21ce6919d8191c.data.unityweb",
+    dataUrl: buildUrl + "/89ff9a9c08d7477716f4b327e2b71d86.data.unityweb",
     frameworkUrl: buildUrl + "/c9b24551867698effc0bc4727207e9f6.js.unityweb",
     codeUrl: buildUrl + "/16910f6af3ea39441c4ef61ed51b7c8c.wasm.unityweb",
     streamingAssetsUrl: "StreamingAssets",
@@ -47,7 +47,7 @@ script.src = loaderUrl;
 script.onload = function () {
     createUnityInstance(canvas, config, function (progress) {
         loadingBar.style.width = 75 * progress + "%";
-        textProgress.innerHTML = `${progress}%`;
+        textProgress.innerHTML = `${Math.floor(progress * 100)}%`;
     }).then(function (unityInstance) {
         unityGame = unityInstance;
     }).catch(function (message) {
