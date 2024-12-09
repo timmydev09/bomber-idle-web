@@ -1,7 +1,7 @@
 var buildUrl = "Build";
-var loaderUrl = buildUrl + "/development.loader.js?638693611223220297";
+var loaderUrl = buildUrl + "/development.loader.js?638693621629410809";
 var config = {
-    dataUrl: buildUrl + "/712fc119dbdac99d7a6d541c6340ae75.data.unityweb",
+    dataUrl: buildUrl + "/c7ade2db3cb2736a8f40c254103cd35f.data.unityweb",
     frameworkUrl: buildUrl + "/a14c53c300c3092f010729a07019dcdc.js.unityweb",
     codeUrl: buildUrl + "/c0a0ee142d4da2370976ab6825bca4ae.wasm.unityweb",
     streamingAssetsUrl: "StreamingAssets",
@@ -116,7 +116,7 @@ const setupTimeout = (time, action) => {
 
 document.body.addEventListener("focusout", function () {
     const body = document.getElementById("main-body")
-    body.style.marginTop = "5px"
+    body.style.marginTop = "100px"
     if (!body) { return }
     setupTimeout(50, () => {
         body.style.marginTop = "0px"
