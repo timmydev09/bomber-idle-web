@@ -1,5 +1,5 @@
 var buildUrl = "Build";
-var loaderUrl = buildUrl + "/development.loader.js?638693527356264755";
+var loaderUrl = buildUrl + "/development.loader.js?638693533948733272";
 var config = {
     dataUrl: buildUrl + "/8c47e5f8854674ae5edb5bd980492fcb.data.unityweb",
     frameworkUrl: buildUrl + "/a0274a090f10fdfaa32aea8bc696e77e.js.unityweb",
@@ -116,7 +116,6 @@ const setupTimeout = (time, action) => {
 
 document.body.addEventListener("focusout", function () {
     const body = document.getElementById("main-body")
-    body.classList.add
     body.style.marginTop = "100px"
     if (!body) { return }
     setupTimeout(100, () => {
