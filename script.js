@@ -1,7 +1,7 @@
 var buildUrl = "Build";
-var loaderUrl = buildUrl + "/development.loader.js?638693400378680555";
+var loaderUrl = buildUrl + "/development.loader.js?638693415850110357";
 var config = {
-    dataUrl: buildUrl + "/6cd914863c94f3645dc17470a01a6b00.data.unityweb",
+    dataUrl: buildUrl + "/6522058a68fa57fc249c5e651796f83f.data.unityweb",
     frameworkUrl: buildUrl + "/a0274a090f10fdfaa32aea8bc696e77e.js.unityweb",
     codeUrl: buildUrl + "/c0a0ee142d4da2370976ab6825bca4ae.wasm.unityweb",
     streamingAssetsUrl: "StreamingAssets",
@@ -80,6 +80,31 @@ tonConnectUI.connectionRestored.then(restored => {
         console.log('Connection was not restored.');
     }
 });
+
+const resetView = {
+    reset: () => {
+        console.log("do reset")
+        this.timeoutId = undefined
+    },
+    setup: (time, action) => {
+        if (typeof this.timeoutId === "number") {
+            this.cancel()
+        }
+
+        this.timeoutId = setTimeout(() => {
+            action()
+        }, time);
+    },
+    cancel: () => {
+        clearTimeout(this.timeoutId)
+    }
+}
+
 document.body.addEventListener("focusout", function () {
-    console.log("-----------focus out");
+    const body = document.getElementById("main-body")
+    body.style.marginTop = "100px"
+    if (!body) { return }
+    resetView.setup(500, () => {
+        body.style.marginTop = "0px"
+    })
 });
