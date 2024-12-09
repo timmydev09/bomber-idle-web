@@ -1,8 +1,8 @@
 var buildUrl = "Build";
-var loaderUrl = buildUrl + "/development.loader.js?638693575273517056";
+var loaderUrl = buildUrl + "/development.loader.js?638693583003847912";
 var config = {
-    dataUrl: buildUrl + "/f7cd4a45afc23b6169315ad6002c1eff.data.unityweb",
-    frameworkUrl: buildUrl + "/a84d460ecccc2e9c32660ce40ad5683d.js.unityweb",
+    dataUrl: buildUrl + "/728bbabdc7d7ac297013562ad4567b98.data.unityweb",
+    frameworkUrl: buildUrl + "/180525551e45e5b228f7ccd1126f4e11.js.unityweb",
     codeUrl: buildUrl + "/c0a0ee142d4da2370976ab6825bca4ae.wasm.unityweb",
     streamingAssetsUrl: "StreamingAssets",
     companyName: "DefaultCompany",
@@ -123,44 +123,3 @@ document.body.addEventListener("focusout", function () {
     })
 });
 
-
-const createInput = (canvasId, x, y, width, height, fontsize, text, placeholder, isMultiLine, isPassword, isHidden, isMobile) => {
-    var container = document.getElementById(UTF8ToString(canvasId));
-    var canvas = container.getElementsByTagName('canvas')[0];
-
-    if (!container && canvas) {
-        // set the container to canvas.parentNode
-        container = canvas.parentNode;
-    }
-
-    const holder = document.createElement("input_holder")
-    holder.classList.add("input_holder")
-    const input = document.createElement(isMultiLine ? "textarea" : "input")
-    holder.appendChild(input)
-    input.classList.add("input-handler")
-    if (isMobile) {
-        input.classList.add("multiline-input")
-    }
-    if (isHidden) {
-        input.classList.add("hidden")
-    }
-    input.spellcheck = false
-    input.value = UTF8ToString(text)
-    input.placeholder = UTF8ToString(placeholder)
-    if (isPassword) {
-        input.type = 'password'
-    }
-    if (!isMobile) {
-        container.appendChild(holder)
-        return
-    }
-    const inputHolder = document.getElementById(UTF8ToString("input-holder"));
-    if (inputHolder) {
-        inputHolder.body.appendChild(holder)
-        return;
-    } else {
-        document.body.appendChild(holder)
-    }
-
-    return input
-}
