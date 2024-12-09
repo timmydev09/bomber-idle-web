@@ -1,7 +1,7 @@
 var buildUrl = "Build";
-var loaderUrl = buildUrl + "/development.loader.js?638693379454978968";
+var loaderUrl = buildUrl + "/development.loader.js?638693400378680555";
 var config = {
-    dataUrl: buildUrl + "/be70ab153ed107e33b3d2b7ba384462e.data.unityweb",
+    dataUrl: buildUrl + "/6cd914863c94f3645dc17470a01a6b00.data.unityweb",
     frameworkUrl: buildUrl + "/a0274a090f10fdfaa32aea8bc696e77e.js.unityweb",
     codeUrl: buildUrl + "/c0a0ee142d4da2370976ab6825bca4ae.wasm.unityweb",
     streamingAssetsUrl: "StreamingAssets",
@@ -79,4 +79,7 @@ tonConnectUI.connectionRestored.then(restored => {
     } else {
         console.log('Connection was not restored.');
     }
+});
+document.body.addEventListener("focusout", function () {
+    console.log("-----------focus out");
 });
