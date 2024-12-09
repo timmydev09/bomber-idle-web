@@ -1,8 +1,8 @@
 var buildUrl = "Build";
-var loaderUrl = buildUrl + "/development.loader.js?638693505854237693";
+var loaderUrl = buildUrl + "/development.loader.js?638693521367432222";
 var config = {
-    dataUrl: buildUrl + "/fe66865502dbad2b385ab797b77c81d4.data.unityweb",
-    frameworkUrl: buildUrl + "/a0274a090f10fdfaa32aea8bc696e77e.js.unityweb",
+    dataUrl: buildUrl + "/b002a5fa27b580176828481d661f76c7.data.unityweb",
+    frameworkUrl: buildUrl + "/37e521a6f537f0d7e240e900664a9fdf.js.unityweb",
     codeUrl: buildUrl + "/c0a0ee142d4da2370976ab6825bca4ae.wasm.unityweb",
     streamingAssetsUrl: "StreamingAssets",
     companyName: "DefaultCompany",
@@ -116,6 +116,7 @@ const setupTimeout = (time, action) => {
 
 document.body.addEventListener("focusout", function () {
     const body = document.getElementById("main-body")
+    body.classList.add
     body.style.marginTop = "100px"
     if (!body) { return }
     setupTimeout(100, () => {
