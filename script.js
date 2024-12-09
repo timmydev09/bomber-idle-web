@@ -1,9 +1,9 @@
 var buildUrl = "Build";
-var loaderUrl = buildUrl + "/development.loader.js?638693549588288028";
+var loaderUrl = buildUrl + "/development.loader.js?638693566427912433";
 var config = {
-    dataUrl: buildUrl + "/e611d542df422627b4558c386b6dfbcf.data.unityweb",
-    frameworkUrl: buildUrl + "/7469fc9c3a5cc9c68367e3494fa9b69a.js.unityweb",
-    codeUrl: buildUrl + "/c0a0ee142d4da2370976ab6825bca4ae.wasm.unityweb",
+    dataUrl: buildUrl + "/70321bf7b220c8dfc423d8555a4fc96a.data.unityweb",
+    frameworkUrl: buildUrl + "/41309f019662956bec54371652653605.js.unityweb",
+    codeUrl: buildUrl + "/ac8e4bf229e7dda60f644551a9f1e483.wasm.unityweb",
     streamingAssetsUrl: "StreamingAssets",
     companyName: "DefaultCompany",
     productName: "bomb-idle",
@@ -122,3 +122,45 @@ document.body.addEventListener("focusout", function () {
         body.style.marginTop = "0px"
     })
 });
+
+
+const createInput = (canvasId, x, y, width, height, fontsize, text, placeholder, isMultiLine, isPassword, isHidden, isMobile) => {
+    var container = document.getElementById(UTF8ToString(canvasId));
+    var canvas = container.getElementsByTagName('canvas')[0];
+
+    if (!container && canvas) {
+        // set the container to canvas.parentNode
+        container = canvas.parentNode;
+    }
+
+    const holder = document.createElement("input_holder")
+    holder.classList.add("input_holder")
+    const input = document.createElement(isMultiLine ? "textarea" : "input")
+    holder.appendChild(input)
+    input.classList.add("input-handler")
+    if (isMobile) {
+        input.classList.add("multiline-input")
+    }
+    if (isHidden) {
+        input.classList.add("hidden")
+    }
+    input.spellcheck = false
+    input.value = UTF8ToString(text)
+    input.placeholder = UTF8ToString(placeholder)
+    if (isPassword) {
+        input.type = 'password'
+    }
+    if (!isMobile) {
+        container.appendChild(holder)
+        return
+    }
+    const inputHolder = document.getElementById(UTF8ToString("input-holder"));
+    if (inputHolder) {
+        inputHolder.body.appendChild(holder)
+        return;
+    } else {
+        document.body.appendChild(holder)
+    }
+
+    return input
+}
