@@ -1,9 +1,9 @@
 var buildUrl = "Build";
-var loaderUrl = buildUrl + "/development.loader.js?638693621629410809";
+var loaderUrl = buildUrl + "/development.loader.js?638693627377397569";
 var config = {
-    dataUrl: buildUrl + "/c7ade2db3cb2736a8f40c254103cd35f.data.unityweb",
-    frameworkUrl: buildUrl + "/a14c53c300c3092f010729a07019dcdc.js.unityweb",
-    codeUrl: buildUrl + "/c0a0ee142d4da2370976ab6825bca4ae.wasm.unityweb",
+    dataUrl: buildUrl + "/6956bbc4e066afe84f579f6aa767ff75.data.unityweb",
+    frameworkUrl: buildUrl + "/bb162eac001f0bb702a6347ee1c5770d.js.unityweb",
+    codeUrl: buildUrl + "/398ceade99bcaa9babb3ffff193bbb9c.wasm.unityweb",
     streamingAssetsUrl: "StreamingAssets",
     companyName: "DefaultCompany",
     productName: "bomb-idle",
@@ -118,7 +118,7 @@ document.body.addEventListener("focusout", function () {
     const body = document.getElementById("main-body")
     body.style.marginTop = "100px"
     if (!body) { return }
-    setupTimeout(50, () => {
+    setupTimeout(100, () => {
         body.style.marginTop = "0px"
     })
 });
