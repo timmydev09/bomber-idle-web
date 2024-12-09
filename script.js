@@ -1,7 +1,7 @@
 var buildUrl = "Build";
-var loaderUrl = buildUrl + "/development.loader.js?638693420394860339";
+var loaderUrl = buildUrl + "/development.loader.js?638693425964776623";
 var config = {
-    dataUrl: buildUrl + "/7515e80a7b17fa7464ad80bf4f12b479.data.unityweb",
+    dataUrl: buildUrl + "/7531ef25a8fe4160c554b9adbff483a3.data.unityweb",
     frameworkUrl: buildUrl + "/a0274a090f10fdfaa32aea8bc696e77e.js.unityweb",
     codeUrl: buildUrl + "/c0a0ee142d4da2370976ab6825bca4ae.wasm.unityweb",
     streamingAssetsUrl: "StreamingAssets",
@@ -86,6 +86,9 @@ const resetView = {
         console.log("do reset")
         this.timeoutId = undefined
     },
+    cancel: () => {
+        clearTimeout(this.timeoutId)
+    },
     setup: (time, action) => {
         if (typeof this.timeoutId === "number") {
             this.cancel()
@@ -95,9 +98,6 @@ const resetView = {
             action()
         }, time);
     },
-    cancel: () => {
-        clearTimeout(this.timeoutId)
-    }
 }
 
 document.body.addEventListener("focusout", function () {
