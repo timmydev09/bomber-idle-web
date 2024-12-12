@@ -1,0 +1,189 @@
+@font-face {
+    font-family: Glory;
+    src: url('Glory-ExtraBold.ttf');
+}
+
+* {
+    padding: 0;
+    margin: 0;
+}
+
+html {
+    /* fix mobile viewport menu bar on iOS */
+    height: -webkit-fill-available;
+}
+
+body {
+    height: 100%;
+    /* fix mobile viewport menu bar on iOS */
+    height: -webkit-fill-available;
+    width: 100%;
+    text-align: center;
+}
+
+body::-webkit-scrollbar {
+    display: none;
+}
+
+
+.logo-holder {
+    position: absolute;
+    width: 100%;
+    display: flex;
+    top: 0;
+    margin-top: 60px;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.logo {
+    width: 65%;
+    object-fit: scale-down;
+}
+
+#unity-container {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+}
+
+/* Default values, might be overwritten by aspect ratio media queries */
+#unity-canvas {
+    width: 100%;
+    background-color: #fff;
+}
+
+#unity-loading-container {
+    display: flex;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image: url('splash.webp');
+    background-position: center;
+    background-size: cover;
+    justify-content: center;
+    align-items: center;
+}
+
+#unity-loading-container.finished {
+    opacity: 0;
+    visibility: collapse;
+}
+
+
+.loading-holder {
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    align-items: center;
+    height: 150px;
+    gap: 2px;
+    background-image: linear-gradient(to top, #33213E, rgba(51, 33, 62, 0.7), rgba(51, 33, 62, 0))
+}
+
+.loading-text-holder {
+    width: 90%;
+}
+
+#unity-loading-bg {
+    width: 90%;
+}
+
+#loading-progress-text {
+    text-align: center;
+    color: white;
+    font-size: 17px;
+    font-family: Glory;
+    font-weight: bold;
+    margin-top: 7px;
+}
+
+.loader-base {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+
+.loader-bg {
+    position: absolute;
+    height: calc(100% - 8px);
+    width: calc(100% - 8px);
+    padding: 4px;
+    display: flex;
+    flex-direction: row;
+
+}
+
+.progress-holder {
+    position: relative;
+    width: 100%;
+    height: 35px;
+    top: 0;
+    left: 0;
+}
+
+#unity-loading-fg {
+    height: 100%;
+    width: 0%;
+    transition: 400ms linear;
+}
+
+#unity-loading-text {
+    color: #fff;
+    font-size: 14px;
+    font-family: Glory;
+}
+
+#unity-loading-version {
+    color: #f7f1e3;
+    opacity: 0.32;
+    text-align: start;
+    font-size: 12px;
+    font-family: Glory;
+}
+
+.input-holder {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.input-handler {
+    position: absolute;
+    top: 60%;
+    height: 1.5em;
+    font-size: 18px;
+    font-family: Glory;
+    touch-action: none;
+}
+
+.mobile-input {
+    width: 100%;
+    left: 0px;
+}
+
+.desktop-input {
+    width: 90%;
+}
+
+.hidden {
+    opacity: 0;
+}
+
+.multiline-input {
+    height: 60px;
+}
