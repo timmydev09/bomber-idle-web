@@ -1,11 +1,9 @@
-
-
 var buildUrl = "Build";
-var loaderUrl = buildUrl + "/development.loader.js?638707201615319618";
+var loaderUrl = buildUrl + "/development.loader.js?638708245296961269";
 var config = {
-    dataUrl: buildUrl + "/0155c3ea503588352d9dbafe8463a067.data.unityweb",
-    frameworkUrl: buildUrl + "/717afc0ebdaf0a49077b1d8d841a9c96.js.unityweb",
-    codeUrl: buildUrl + "/110aed7df62f42d7e213a32cb146ab3f.wasm.unityweb",
+    dataUrl: buildUrl + "/bc8115e4cfcfa9918e4d843579f1fb9f.data.unityweb",
+    frameworkUrl: buildUrl + "/ff12d4b3ed31bbd5a4c9a32c98c6b43f.js.unityweb",
+    codeUrl: buildUrl + "/f67a4bd5c723bf1c363634be903ccbb4.wasm.unityweb",
     streamingAssetsUrl: "StreamingAssets",
     companyName: "DefaultCompany",
     productName: "bomb-idle",
@@ -68,8 +66,22 @@ function UnityTaskCallBack(taskId, success, data) {
     }));
 }
 
+
+const miraiWallet = {
+    appName: "miraiapp-tg",
+    name: "Mirai App",
+    imageUrl: "https://cdn.mirailabs.co/miraihub/miraiapp-tg-icon-288.png",
+    aboutUrl: "https://mirai.app",
+    universalLink: "https://t.me/mirai_app_dev_bot?attach=wallet",
+    bridgeUrl: "https://bridge.tonapi.io/bridge",
+    platforms: ["ios", "android", "macos", "windows", "linux"],
+}
+
 const tonConnectUI = new TON_CONNECT_UI.TonConnectUI({
-    manifestUrl: 'https://cdn.mirailabs.co/bomber/static/tonConnectConfig.json'
+    manifestUrl: 'https://cdn.mirailabs.co/bomber/static/tonConnectConfig.json',
+    walletsListConfiguration: {
+        includeWallets: [miraiWallet]
+    }
 });
 
 tonConnectUI.onStatusChange(walletAndwalletInfo => {
@@ -83,45 +95,5 @@ tonConnectUI.connectionRestored.then(restored => {
     }
 });
 
-const resetView = {
-    reset: () => {
-        console.log("do reset")
-        this.timeoutId = undefined
-    },
-    cancel: () => {
-        clearTimeout(this.timeoutId)
-    },
-    setup: (time, action) => {
-        if (typeof this.timeoutId === "number") {
-            this.cancel()
-        }
 
-        this.timeoutId = setTimeout(() => {
-            action()
-        }, time);
-    },
-}
-
-let timeoutId = undefined
-const cancelTimeout = () => {
-    if (!timeoutId) { return }
-    clearTimeout(timeoutId)
-    timeoutId = undefined
-}
-
-const setupTimeout = (time, action) => {
-    cancelTimeout()
-    timeoutId = setTimeout(() => {
-        action()
-    }, time);
-}
-
-document.body.addEventListener("focusout", function () {
-    const body = document.getElementById("main-body")
-    body.style.marginTop = "100px"
-    if (!body) { return }
-    setupTimeout(100, () => {
-        body.style.marginTop = "0px"
-    })
-});
 
