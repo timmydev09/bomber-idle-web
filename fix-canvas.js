@@ -5,3 +5,45 @@ window.addEventListener('load', () => {
     child.style.height = `${parentHeight}px`
     console.log('on page load')
 });
+
+let timeoutId = undefined
+const cancelTimeout = () => {
+    if (!timeoutId) { return }
+    clearTimeout(timeoutId)
+    timeoutId = undefined
+}
+
+const setupTimeout = (time, action) => {
+    cancelTimeout()
+    timeoutId = setTimeout(() => {
+        action()
+    }, time);
+}
+
+document.body.addEventListener("focusout", function () {
+    const body = document.getElementById("main-body")
+    body.style.marginTop = "100px"
+    if (!body) { return }
+    setupTimeout(100, () => {
+        body.style.marginTop = "0px"
+    })
+});
+
+const resetView = {
+    reset: () => {
+        console.log("do reset")
+        this.timeoutId = undefined
+    },
+    cancel: () => {
+        clearTimeout(this.timeoutId)
+    },
+    setup: (time, action) => {
+        if (typeof this.timeoutId === "number") {
+            this.cancel()
+        }
+
+        this.timeoutId = setTimeout(() => {
+            action()
+        }, time);
+    },
+}
