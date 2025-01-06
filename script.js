@@ -1,8 +1,8 @@
 var buildUrl = "Build";
-var loaderUrl = buildUrl + "/development.loader.js?638717577169376880";
+var loaderUrl = buildUrl + "/development.loader.js?638717581988260867";
 var config = {
-    dataUrl: buildUrl + "/d48f48123e441428b0a50a0f2085599d.data.unityweb",
-    frameworkUrl: buildUrl + "/c0bdaa46613d93b9207511548a4015b0.js.unityweb",
+    dataUrl: buildUrl + "/900767db34e6840af0eb6ead3341e52f.data.unityweb",
+    frameworkUrl: buildUrl + "/d0be1e3b51994f708450300d5f255dc8.js.unityweb",
     codeUrl: buildUrl + "/0bb120043a78dbb6b71199d9dff848d4.wasm.unityweb",
     streamingAssetsUrl: "StreamingAssets",
     companyName: "DefaultCompany",
