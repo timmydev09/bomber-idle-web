@@ -143,7 +143,7 @@ class TonWebModule {
 				tonConnectUI.wallet.account.address
 			);
 			cell.bits.writeAddress(userAddress);
-			const amount = this.convertAmount(jsonData, jsonData.token_decimals) //jsonData.amount * Math.pow(10, jsonData.token_decimals)
+			const amount = this.convertAmount(jsonData.amount, jsonData.token_decimals) //jsonData.amount * Math.pow(10, jsonData.token_decimals)
 			cell.bits.writeCoins(amount);
 			const tokenAddress = new TonWeb.utils.Address(jsonData.tokenAddress);
 			cell.bits.writeAddress(tokenAddress);
@@ -189,7 +189,7 @@ class TonWebModule {
 			const cell = new TonWeb.boc.Cell();
 			cell.bits.writeUint(1931016268, 32);
 			cell.bits.writeAddress(userAddress);
-			const amount = jsonData.amount * Math.pow(10, jsonData.token_decimals)
+			const amount = this.convertAmount(jsonData.amount, jsonData.token_decimals)
 			cell.bits.writeCoins(amount);
 			cell.bits.writeAddress(tokenAddress);
 			cell.bits.writeUint(jsonData.orderId, 64);
@@ -242,7 +242,7 @@ class TonWebModule {
 			cell.bits.writeAddress(userAddress); //Receiver address
 			cell.bits.writeAddress(tokenAddress); //token address
 
-			const amount = jsonData.amount * Math.pow(10, jsonData.token_decimals)
+			const amount = this.convertAmount(jsonData.amount, jsonData.token_decimals)
 			cell.bits.writeCoins(amount); //Amount
 			cell.bits.writeUint(jsonData.deadline, 32); //Deadline
 			cell.bits.writeUint(Number(jsonData.orderId), 64); //txId
@@ -282,7 +282,7 @@ class TonWebModule {
 			const cell = new TonWeb.boc.Cell();
 			cell.bits.writeUint(260734629, 32);
 			cell.bits.writeUint(0, 64); // query id
-			const amount = jsonData.amount * Math.pow(10, jsonData.token_decimals)
+			const amount = this.convertAmount(jsonData.amount, jsonData.token_decimals)
 			console.log(`stake amount: ${amount}`)
 			cell.bits.writeCoins(amount);
 			cell.bits.writeAddress(
