@@ -213,9 +213,9 @@ class TonWebModule {
 			const msgBody = TonWeb.utils.base64ToBytes(result.boc);
 			const msgCell = TonWeb.boc.Cell.oneFromBoc(msgBody);
 			const hash = TonWeb.utils.bytesToBase64(await msgCell.hash());
-			UnityTaskCallBack(taskId, true, hash);
+			UnityModule.sendTaskCallback(args.taskId, true, hash);
 		} catch (err) {
-			UnityTaskCallBack(taskId, false, err);
+			UnityModule.sendTaskCallback(args.taskId, true, err);
 		}
 	}
 
@@ -262,9 +262,69 @@ class TonWebModule {
 			const msgBody = TonWeb.utils.base64ToBytes(result.boc);
 			const msgCell = TonWeb.boc.Cell.oneFromBoc(msgBody);
 			const hash = TonWeb.utils.bytesToBase64(await msgCell.hash());
-			UnityTaskCallBack(taskId, true, hash);
+			UnityModule.sendTaskCallback(args.taskId, true, hash);
 		} catch (err) {
-			UnityTaskCallBack(taskId, false, err);
+			UnityModule.sendTaskCallback(args.taskId, true, err);
+		}
+	}
+
+	async stakeJetton(args) {
+		try {
+			if (!tonConnectUI.connected) {
+				await tonConnectUI.connectWallet();
+			}
+			const jsonData = JSON.parse(args.data);
+
+			const userAddress = new TonWeb.utils.Address(
+				tonConnectUI.wallet.account.address
+			);
+			const cell = new TonWeb.boc.Cell();
+			cell.bits.writeUint(260734629, 32);
+			cell.bits.writeUint(0, 64); // query id
+			const amount = jsonData.amount * Math.pow(10, jsonData.token_decimals)
+			console.log(`stake amount: ${amount}`)
+			cell.bits.writeCoins(amount);
+			cell.bits.writeAddress(
+				new TonWeb.utils.Address(jsonData.contractAddress)
+			);
+			cell.bits.writeAddress(userAddress);
+			cell.bits.writeBit(false); // no custom payload
+			cell.bits.writeCoins(TonWeb.utils.toNano("0.1")); // forward amount (if >0, will send notification message)
+
+			cell.bits.writeBit(true); // we store forwardPayload as a reference
+			const forwardCell = new TonWeb.boc.Cell();
+			forwardCell.bits.writeUint(3932984938, 32);
+
+			forwardCell.bits.writeAddress(userAddress);
+			forwardCell.bits.writeCoins(amount);
+			forwardCell.bits.writeAddress(jsonData.tokenAddress);
+			forwardCell.bits.writeUint(jsonData.orderId, 64);
+			forwardCell.bits.writeUint(jsonData.deadline, 64);
+
+			const signatureCell = new TonWeb.boc.Cell();
+			const bytesSignature = TonWeb.utils.base64ToBytes(jsonData.signature);
+			signatureCell.bits.writeBytes(bytesSignature);
+			forwardCell.refs.push(signatureCell); //Signature
+			cell.refs.push(forwardCell);
+
+			const payload = TonWeb.utils.bytesToBase64(await cell.toBoc());
+			const transaction = {
+				validUntil: Math.floor(Date.now() / 1000) + 360,
+				messages: [
+					{
+						address: jsonData.userJettonWallet, //jetton
+						amount: TonWeb.utils.toNano("0.05").toString(),
+						payload: payload,
+					},
+				],
+			};
+			const result = await tonConnectUI.sendTransaction(transaction);
+			const msgBody = TonWeb.utils.base64ToBytes(result.boc);
+			const msgCell = TonWeb.boc.Cell.oneFromBoc(msgBody);
+			const hash = TonWeb.utils.bytesToBase64(await msgCell.hash());
+			UnityModule.sendTaskCallback(args.taskId, true, hash);
+		} catch (err) {
+			UnityModule.sendTaskCallback(args.taskId, true, err);
 		}
 	}
 }
