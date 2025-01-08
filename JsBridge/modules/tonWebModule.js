@@ -168,9 +168,9 @@ class TonWebModule {
 			const msgBody = TonWeb.utils.base64ToBytes(result.boc);
 			const msgCell = TonWeb.boc.Cell.oneFromBoc(msgBody);
 			const hash = TonWeb.utils.bytesToBase64(await msgCell.hash());
-			UnityTaskCallBack(taskId, true, hash);
+			UnityModule.sendTaskCallback(args.taskId, true, hash);
 		} catch (err) {
-			UnityTaskCallBack(taskId, false, err);
+			UnityModule.sendTaskCallback(args.taskId, true, hash);
 		}
 	}
 
