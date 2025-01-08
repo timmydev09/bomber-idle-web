@@ -171,7 +171,7 @@ class TonWebModule {
 			const hash = TonWeb.utils.bytesToBase64(await msgCell.hash());
 			UnityModule.sendTaskCallback(args.taskId, true, hash);
 		} catch (err) {
-			UnityModule.sendTaskCallback(args.taskId, true, err);
+			UnityModule.sendTaskCallback(args.taskId, false, err)
 		}
 	}
 
@@ -216,7 +216,7 @@ class TonWebModule {
 			const hash = TonWeb.utils.bytesToBase64(await msgCell.hash());
 			UnityModule.sendTaskCallback(args.taskId, true, hash);
 		} catch (err) {
-			UnityModule.sendTaskCallback(args.taskId, true, err);
+			UnityModule.sendTaskCallback(args.taskId, false, err)
 		}
 	}
 
@@ -265,7 +265,7 @@ class TonWebModule {
 			const hash = TonWeb.utils.bytesToBase64(await msgCell.hash());
 			UnityModule.sendTaskCallback(args.taskId, true, hash);
 		} catch (err) {
-			UnityModule.sendTaskCallback(args.taskId, true, err);
+			UnityModule.sendTaskCallback(args.taskId, false, err)
 		}
 	}
 
@@ -325,7 +325,7 @@ class TonWebModule {
 			const hash = TonWeb.utils.bytesToBase64(await msgCell.hash());
 			UnityModule.sendTaskCallback(args.taskId, true, hash);
 		} catch (err) {
-			UnityModule.sendTaskCallback(args.taskId, true, err);
+			UnityModule.sendTaskCallback(args.taskId, false, err)
 		}
 	}
 }
