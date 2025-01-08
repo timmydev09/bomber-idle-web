@@ -116,18 +116,19 @@ class TonWebModule {
 	}
 
 	convertAmount(amount, decimals) {
-		let comps = amount.toString().split(".");
-		let whole = comps[0];
-		let fraction = comps.length > 1 ? comps[1].substring(0, decimals) : "0";
+		return amount * Math.pow(10, decimals)
+		// let comps = amount.toString().split(".");
+		// let whole = comps[0];
+		// let fraction = comps.length > 1 ? comps[1].substring(0, decimals) : "0";
 
-		if (!whole) whole = "0";
-		if (!fraction) fraction = "0";
-		while (fraction.length < decimals) fraction += "0";
-		whole = new TonWeb.utils.BN(whole);
-		fraction = new TonWeb.utils.BN(fraction);
+		// if (!whole) whole = "0";
+		// if (!fraction) fraction = "0";
+		// while (fraction.length < decimals) fraction += "0";
+		// whole = new TonWeb.utils.BN(whole);
+		// fraction = new TonWeb.utils.BN(fraction);
 
-		const multiplier = new TonWeb.utils.BN(10).pow(new TonWeb.utils.BN(decimals));
-		return whole.mul(multiplier).add(fraction);
+		// const multiplier = new TonWeb.utils.BN(10).pow(new TonWeb.utils.BN(decimals));
+		// return whole.mul(multiplier).add(fraction);
 	}
 
 	async stakeTon(args) {
@@ -170,7 +171,7 @@ class TonWebModule {
 			const hash = TonWeb.utils.bytesToBase64(await msgCell.hash());
 			UnityModule.sendTaskCallback(args.taskId, true, hash);
 		} catch (err) {
-			UnityModule.sendTaskCallback(args.taskId, true, hash);
+			UnityModule.sendTaskCallback(args.taskId, true, err);
 		}
 	}
 
