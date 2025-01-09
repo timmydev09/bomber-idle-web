@@ -44,7 +44,7 @@ class TelegramModule {
 	openInvoice(args) {
 		Telegram.WebApp.openInvoice(args.url, status => {
 			var isPaid = status == "paid";
-			UnityModule.sendTaskCallback(args.taskId, isPaid, isPaid);
+			UnityModule.sendTaskCallback(args.taskId, true, isPaid);
 		});
 	}
 
