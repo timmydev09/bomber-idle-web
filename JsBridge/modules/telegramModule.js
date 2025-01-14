@@ -6,6 +6,10 @@ class TelegramModule {
 		return Telegram.WebApp.initData;
 	}
 
+	refreshPage() {
+		document.location.reload()
+	}
+
 	openLink(args) {
 		var url = args.url;
 		if (typeof Telegram === 'undefined') {
