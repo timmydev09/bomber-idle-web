@@ -35,45 +35,7 @@ class TonWebModule {
 		}
 	}
 
-	async claimTon(args) {
-		try {
-			const jsonData = JSON.parse(args.data);
-			const cell = new TonWeb.boc.Cell();
-			cell.bits.writeUint(802178298, 32); //claim op code
 
-			const signatureCell = new TonWeb.boc.Cell();
-			const bytesSignature = TonWeb.utils.base64ToBytes(jsonData.signature);
-			signatureCell.bits.writeBytes(bytesSignature);
-			cell.refs.push(signatureCell); //Signature
-
-			const address = new TonWeb.utils.Address(jsonData.to_address);
-			cell.bits.writeAddress(address); //Receiver address
-
-			const nanoAmount = TonWeb.utils.toNano(jsonData.amount.toString());
-			cell.bits.writeCoins(nanoAmount); //Amount
-			cell.bits.writeUint(jsonData.deadline, 32); //Deadline
-			cell.bits.writeUint(Number(jsonData.order_id), 64); //txId
-
-			const payload = TonWeb.utils.bytesToBase64(await cell.toBoc());
-			const transaction = {
-				validUntil: Math.floor(Date.now() / 1000) + 3600,
-				messages: [
-					{
-						address: jsonData.contract_address,
-						amount: TonWeb.utils.toNano('0.01').toString(),
-						payload: payload,
-					},
-				],
-			};
-			const result = await tonConnectUI.sendTransaction(transaction);
-			const msgBody = TonWeb.utils.base64ToBytes(result.boc);
-			const msgCell = TonWeb.boc.Cell.oneFromBoc(msgBody);
-			const hash = TonWeb.utils.bytesToBase64(await msgCell.hash());
-			UnityModule.sendTaskCallback(args.taskId, true, hash);
-		} catch (error) {
-			UnityModule.sendTaskCallback(args.taskId, false, error)
-		}
-	}
 
 	async sendJetton(args) {
 		try {
@@ -219,7 +181,54 @@ class TonWebModule {
 			UnityModule.sendTaskCallback(args.taskId, false, err)
 		}
 	}
+	async claimTon(args) {
+		try {
+			if (!tonConnectUI.connected) {
+				await tonConnectUI.connectWallet();
+			}
+			const userAddress = new TonWeb.utils.Address(
+				tonConnectUI.wallet.account.address
+			);
 
+			const jsonData = JSON.parse(args.data);
+			const cell = new TonWeb.boc.Cell();
+			cell.bits.writeUint(3271320869, 32); //claim op code
+
+			const signatureCell = new TonWeb.boc.Cell();
+			const bytesSignature = TonWeb.utils.base64ToBytes(jsonData.signature);
+			signatureCell.bits.writeBytes(bytesSignature);
+			cell.refs.push(signatureCell); //Signature
+
+			const tokenAddress = new TonWeb.utils.Address(jsonData.tokenAddress);
+			cell.bits.writeAddress(userAddress); //Receiver address
+			cell.bits.writeAddress(tokenAddress); //token address
+
+			const amount = this.convertAmount(jsonData.amount, jsonData.token_decimals)
+			cell.bits.writeCoins(amount); //Amount
+			cell.bits.writeUint(jsonData.deadline, 32); //Deadline
+			cell.bits.writeUint(Number(jsonData.orderId), 64); //txId
+
+			const payload = TonWeb.utils.bytesToBase64(await cell.toBoc());
+			const transaction = {
+				messages: [
+					{
+						address: jsonData.contractAddress,
+						amount: TonWeb.utils.toNano("0.01").toString(),
+						payload: payload,
+					},
+				],
+			};
+
+			transaction.validUntil = Math.floor(Date.now() / 1000) + 3600;
+			const result = await tonConnectUI.sendTransaction(transaction);
+			const msgBody = TonWeb.utils.base64ToBytes(result.boc);
+			const msgCell = TonWeb.boc.Cell.oneFromBoc(msgBody);
+			const hash = TonWeb.utils.bytesToBase64(await msgCell.hash());
+			UnityModule.sendTaskCallback(args.taskId, true, hash);
+		} catch (err) {
+			UnityModule.sendTaskCallback(args.taskId, false, err)
+		}
+	}
 	async claimBonus(args) {
 		try {
 			if (!tonConnectUI.connected) {
