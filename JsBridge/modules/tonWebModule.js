@@ -186,34 +186,34 @@ class TonWebModule {
 			if (!tonConnectUI.connected) {
 				await tonConnectUI.connectWallet();
 			}
-			const userAddress = new TonWeb.utils.Address(
-				tonConnectUI.wallet.account.address
-			);
+			const userAddress = new TonWeb.utils.Address(tonConnectUI.wallet.account.address);
+			const tokenAddress = new TonWeb.utils.Address(jsonData.tokenAddress);
 
 			const jsonData = JSON.parse(args.data);
 			const cell = new TonWeb.boc.Cell();
 			cell.bits.writeUint(3271320869, 32); //claim op code
+			cell.bits.writeAddress(userAddress); //Receiver address
+
+			const amount = this.convertAmount(jsonData.amount, jsonData.token_decimals)
+			cell.bits.writeCoins(amount); //Amount
+			cell.bits.writeAddress(tokenAddress); //token address
+			cell.bits.writeUint(Number(jsonData.orderId), 64); //txId
+			cell.bits.writeUint(jsonData.deadline, 64); //Deadline
 
 			const signatureCell = new TonWeb.boc.Cell();
 			const bytesSignature = TonWeb.utils.base64ToBytes(jsonData.signature);
 			signatureCell.bits.writeBytes(bytesSignature);
 			cell.refs.push(signatureCell); //Signature
 
-			const tokenAddress = new TonWeb.utils.Address(jsonData.tokenAddress);
-			cell.bits.writeAddress(userAddress); //Receiver address
-			cell.bits.writeAddress(tokenAddress); //token address
 
-			const amount = this.convertAmount(jsonData.amount, jsonData.token_decimals)
-			cell.bits.writeCoins(amount); //Amount
-			cell.bits.writeUint(jsonData.deadline, 32); //Deadline
-			cell.bits.writeUint(Number(jsonData.orderId), 64); //txId
 
 			const payload = TonWeb.utils.bytesToBase64(await cell.toBoc());
 			const transaction = {
+				validUntil: Math.floor(Date.now() / 1000) + 360,
 				messages: [
 					{
 						address: jsonData.contractAddress,
-						amount: TonWeb.utils.toNano("0.01").toString(),
+						amount: TonWeb.utils.toNano("0.05").toString(), // 0.01
 						payload: payload,
 					},
 				],
@@ -253,7 +253,7 @@ class TonWebModule {
 
 			const amount = this.convertAmount(jsonData.amount, jsonData.token_decimals)
 			cell.bits.writeCoins(amount); //Amount
-			cell.bits.writeUint(jsonData.deadline, 32); //Deadline
+			cell.bits.writeUint(jsonData.deadline, 64); //Deadline
 			cell.bits.writeUint(Number(jsonData.orderId), 64); //txId
 
 			const payload = TonWeb.utils.bytesToBase64(await cell.toBoc());
@@ -261,7 +261,7 @@ class TonWebModule {
 				messages: [
 					{
 						address: jsonData.contractAddress,
-						amount: TonWeb.utils.toNano("0.01").toString(),
+						amount: TonWeb.utils.toNano("0.05").toString(),
 						payload: payload,
 					},
 				],
