@@ -1,9 +1,9 @@
 var buildUrl = "Build";
-var loaderUrl = buildUrl + "/development.loader.js?638742638829505011";
+var loaderUrl = buildUrl + "/development.loader.js?638742646230717915";
 var config = {
-    dataUrl: buildUrl + "/8ab12d58491be73cd1613866b45c7e20.data.unityweb",
-    frameworkUrl: buildUrl + "/fc0c465289e31cfd22d06029f5e9f073.js.unityweb",
-    codeUrl: buildUrl + "/bf015688f32635cd73f54a537260604c.wasm.unityweb",
+    dataUrl: buildUrl + "/021995462ad4a01bc2adf0fa6d65eb36.data.unityweb",
+    frameworkUrl: buildUrl + "/cd9d9b8f0841a79d8ebac60fac3fd78a.js.unityweb",
+    codeUrl: buildUrl + "/3390ebc939c1aec1afb43cdaf2c85b15.wasm.unityweb",
     streamingAssetsUrl: "StreamingAssets",
     companyName: "DefaultCompany",
     productName: "bomb-idle",
