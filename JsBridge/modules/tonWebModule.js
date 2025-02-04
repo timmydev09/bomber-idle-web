@@ -186,10 +186,10 @@ class TonWebModule {
 			if (!tonConnectUI.connected) {
 				await tonConnectUI.connectWallet();
 			}
+			const jsonData = JSON.parse(args.data);
 			const userAddress = new TonWeb.utils.Address(tonConnectUI.wallet.account.address);
 			const tokenAddress = new TonWeb.utils.Address(jsonData.tokenAddress);
 
-			const jsonData = JSON.parse(args.data);
 			const cell = new TonWeb.boc.Cell();
 			cell.bits.writeUint(3271320869, 32); //claim op code
 			cell.bits.writeAddress(userAddress); //Receiver address
@@ -234,11 +234,11 @@ class TonWebModule {
 			if (!tonConnectUI.connected) {
 				await tonConnectUI.connectWallet();
 			}
+			const jsonData = JSON.parse(args.data);
 			const userAddress = new TonWeb.utils.Address(
 				tonConnectUI.wallet.account.address
 			);
 
-			const jsonData = JSON.parse(args.data);
 			const cell = new TonWeb.boc.Cell();
 			cell.bits.writeUint(3271320869, 32); //claim op code
 
